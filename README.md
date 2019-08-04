@@ -91,7 +91,8 @@ If building API, can using `processUserInput` function as callback point.
 The Timer needs to handled based on server/client implementation.
 
 2. To make the application push to production ready, I would 
-- Setup CI/CD pipeline
+- Setup CI/CD pipeline 
+- Setup compiler (Webpack or similar)
 - Write Tests
 - Probably/If needed
     - write some validation based on business case 
