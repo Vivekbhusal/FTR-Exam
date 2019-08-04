@@ -67,3 +67,10 @@ quit
 >> 10:3, 8:2, 33:1
 >> Thanks for playing, press any key to exit.
 ```
+
+
+# Part 2
+1. You have a new requirement to implement for your application: its logic should stay exactly the same but it will need to have a different user interface (e.g. if you wrote a web app, a different UI may be a REPL).
+
+`src/application.js` => `processUserInput` has the core logic of the application. 
+It accepts an input 

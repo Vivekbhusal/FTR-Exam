@@ -30,7 +30,3 @@ export const getFormattedOutput = () => {
             .join(", ");
 }
 
-export const print = () => {
-   console.log(getFormattedOutput());
-}
-

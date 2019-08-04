@@ -1,13 +1,6 @@
-import Watch from "./timer";
 import * as UserInput from "./userInput";
 import * as Record from "./record";
-
-let timer : Watch; //timer's object
-
-export const startTimer = (timeInterval: any) => {
-    timer = new Watch(timeInterval, Record.print);
-    timer.start();
-}
+import * as Response from './response';
 
 const processUserInput = (answer: any) => {
     if(answer.length == 0) return;
@@ -18,26 +11,17 @@ const processUserInput = (answer: any) => {
     } else {
         switch(answer) {
             case "halt":
-                timer.pause();
-                console.log("timer paused");
+                Response.halt();
                 break;
             case "resume":
-                timer.resume();
-                console.log("timer resumed");
+                Response.resume();
                 break;
             case "quit":
-                timer.stop();
-                Record.print();
-
-                //Show the exit message to user, wait for any key and exit.
-                UserInput.ask("Thanks for playing, press any key to exit.")
-                    .then(() =>{
-                        process.exit(1);
-                    });
+                Response.quit();
                 break;
-                
+            
             default:
-                console.log("Valid input is 'halt', 'resume', 'quit' or an Integer");
+                Response.invalidEntry();
         }
     }
 }
@@ -58,3 +42,5 @@ export const listenUserInLoop = () => {
 }
 
 export const askTimeWithUser = () => UserInput.askTimeWithUser();
+
+export const startTimer = (timeInterval: number) => Response.startTimer(timeInterval);
