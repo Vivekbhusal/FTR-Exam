@@ -1,9 +1,8 @@
 var fs = require("fs");
 var path = require("path");
 
-const DIR_NAME = "fibo-numbers";
-const DIRECTORY_PATH = path.join(__dirname, DIR_NAME);
-const TOTAL_FIBONACCI_NUMBER = 100;
+const DIR_NAME = "generated-fib-files";
+const TOTAL_FIBONACCI_NUMBER = 1000;
 
 var tempVar1 = "0";
 var tempVar2 = "1";
@@ -14,11 +13,11 @@ var tempVar2 = "1";
  * remove old files
  */
 function initiliseFileAndFolders() {
-    if (!fs.existsSync(DIRECTORY_PATH)){
+    if (!fs.existsSync(DIR_NAME)){
         console.log("creating fibo-number directory");
-        fs.mkdirSync(DIRECTORY_PATH);
+        fs.mkdirSync(DIR_NAME);
     } else {
-        fs.readdir(DIRECTORY_PATH, function(err, files) {
+        fs.readdir(DIR_NAME, function(err, files) {
             if (err) {
                 return console.log('Unable to scan directory: ' + err);
             } 
@@ -26,10 +25,16 @@ function initiliseFileAndFolders() {
             if(files.length > 0) {
                 throw new Error("Old files found. Please delete previously generated files and try again.")
             }
-            files.forEach(function (file) {
-                console.log(`Found exiting file. Deleting ${file}`);
-                fs.unlinkSync(path.join(DIRECTORY_PATH, file));
-            });
+
+            /**
+             * To enable below logic
+             * the function needs to be sync 
+             * to ensure that files are remove before application starts
+             */
+            // files.forEach(function (file) {
+            //     console.log(`Found exiting file. Deleting ${file}`);
+            //     fs.unlinkSync(path.join(DIR_NAME, file));
+            // });
 
         })
     }
@@ -55,7 +60,7 @@ const writeDefaultValueToFile = () => {
  * @param {Int} number 
  */
 const writeToFile = (number) => {
-    fs.appendFile(DIRECTORY_PATH+"/"+number.length+".txt", number+"\n",(err) => {
+    fs.appendFile(DIR_NAME+"/"+number.length+".txt", number+"\n",(err) => {
         if (err) {
           console.error(err)
           return

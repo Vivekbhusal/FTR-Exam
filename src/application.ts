@@ -1,15 +1,15 @@
-const Watch = require("./timer");
-const UserInput = require("./userInput");
-const Record = require("./record");
+import Watch from "./timer";
+import * as UserInput from "./userInput";
+import * as Record from "./record";
 
-let timer; //timer's object
+let timer : Watch; //timer's object
 
-const startTimer = (timeInterval) => {
+export const startTimer = (timeInterval: any) => {
     timer = new Watch(timeInterval, Record.print);
     timer.start();
 }
 
-const processUserInput = (answer) => {
+const processUserInput = (answer: any) => {
     if(answer.length == 0) return;
 
     if(!isNaN(answer)) {
@@ -42,14 +42,14 @@ const processUserInput = (answer) => {
     }
 }
 
-const listenToUser = () => {
+export const listenToUser = () => {
     const nextOrFirst = Record.all().size < 1 ? "first" : "next";
     return UserInput.ask(`Please enter the ${nextOrFirst} number\n`);   
 }
 
-const listenUserInLoop = () => {
+export const listenUserInLoop = () => {
     listenToUser()
-        .then( answer => {
+        .then( (answer: string)=> {
             processUserInput(answer);
         })
         .then(() => {
@@ -57,10 +57,4 @@ const listenUserInLoop = () => {
         });
 }
 
-
-
-module.exports = {
-    listenUserInLoop,
-    startTimer,
-    askTimeWithUser :  () => UserInput.askTimeWithUser()
-}
+export const askTimeWithUser = () => UserInput.askTimeWithUser();

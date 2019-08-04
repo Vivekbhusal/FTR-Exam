@@ -1,7 +1,7 @@
-var App = require("./application");
+import * as App  from "./application";
 
 App.askTimeWithUser()
-    .then((timeInterval) => {
+    .then((timeInterval : number) => {
         App.startTimer(timeInterval)
     })
     .then(()=>{
