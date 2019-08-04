@@ -73,4 +73,20 @@ quit
 1. You have a new requirement to implement for your application: its logic should stay exactly the same but it will need to have a different user interface (e.g. if you wrote a web app, a different UI may be a REPL).
 
 `src/application.js` => `processUserInput` has the core logic of the application. 
-It accepts an input 
+`response.ts` handles the output after processing user data
+
+If building API, can using `processUserInput` function as point. 
+The Timer needs to handled based on server/client implementation.
+
+2. To make the application push to production ready, I would connect my github with Jenkins or CI/CD pipeline, connect it to AWS cloud deploy to publish it to server.
+Application has a dependency of "Timer" which would have to migrated with caution based on the architecture of application. 
+
+
+3. Honestly this is probably one of the best test I have seen. It tests your hands-on ability but also the overall logical area of software development. 
+
+The exam has potential to confuse about the Fibonacci. But the underlying challanges of memory (like buffer) & performance are the core of it all. 
+
+I can talk more about it. I enjoyed the test. It has potentional to make me keep improving (That can be addictive sometime). You can handle the fibo number search logic in different ways. On my first thought, I said, regex would be good way to search.
+With my current implementation, the loopup would be significatly faster because of file indexing based on lenght of input number. 
+
+
