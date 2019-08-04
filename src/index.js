@@ -100,15 +100,20 @@ const listenToUser = () => {
         });
 }
 
-const displayUserInputMapStack = () => {
-    var tempmap = new Map([...userDataEntryMap
-        .entries()]
-        .sort((a, b) => b[1] - a[1]))
+const getFormattedOutput = () => {
+    return [...userDataEntryMap
+            .entries()]
+            .sort((a, b) => b[1] - a[1])
+            .map(e => e.join(":"))
+            .join(", ");
+}
 
-    tempmap.forEach((value, key) => {
-        console.log(`${key}:${value}`);
-    });
+const displayUserInputMapStack = () => {
+   console.log(getFormattedOutput());
 }
 
 
+/**
+ * Let the magic start 
+ */
 startApplication();
