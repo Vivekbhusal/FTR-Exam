@@ -4,7 +4,7 @@
   "description": "Coding Interview test for Platform Developer",
   "main": "src/index.js",
   "scripts": {
-    "start": "./node_modules/ts-node/dist/bin.js src/index.ts",
+    "start": "npm run setup && ./node_modules/ts-node/dist/bin.js src/index.ts",
     "gen-fib-file": "node src/Helper/generateFibonacci.js",
     "setup": "npm run gen-fib-file",
     "test": "echo \"Error: no test specified\" && exit 1"

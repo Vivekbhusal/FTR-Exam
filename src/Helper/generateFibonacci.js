@@ -14,17 +14,17 @@ var tempVar2 = "1";
  */
 function initiliseFileAndFolders() {
     if (!fs.existsSync(DIR_NAME)){
-        console.log("creating fibo-number directory");
         fs.mkdirSync(DIR_NAME);
-    } else {
-        fs.readdir(DIR_NAME, function(err, files) {
-            if (err) {
-                return console.log('Unable to scan directory: ' + err);
-            } 
+    } 
+    //else {
+        //fs.readdir(DIR_NAME, function(err, files) {
+            // if (err) {
+            //     return console.log('Unable to scan directory: ' + err);
+            // } 
 
-            if(files.length > 0) {
-                throw new Error("Old files found. Please delete previously generated files and try again.")
-            }
+            // if(files.length > 0) {
+            //     throw new Error("Old files found. Please delete previously generated files and try again.")
+            // }
 
             /**
              * To enable below logic
@@ -36,8 +36,8 @@ function initiliseFileAndFolders() {
             //     fs.unlinkSync(path.join(DIR_NAME, file));
             // });
 
-        })
-    }
+        // })
+    // }
 }
 
 /**
@@ -45,7 +45,6 @@ function initiliseFileAndFolders() {
  * 0 & 1 to the file by default
  */
 const writeDefaultValueToFile = () => {
-    console.log("writing default to file...");
     writeToFile("0");
     writeToFile("1");
 }
