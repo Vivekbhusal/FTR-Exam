@@ -1,5 +1,5 @@
 {
-  "name": "fortherecord",
+  "name": "interview-test-fibonacci",
   "version": "1.0.0",
   "description": "Coding Interview test for Platform Developer",
   "main": "src/index.js",
@@ -29,7 +29,6 @@
     "typescript": "^3.5.3"
   },
   "devDependencies": {
-    "@types/core-js": "^2.5.2",
     "@types/node": "^12.6.9"
   }
 }
