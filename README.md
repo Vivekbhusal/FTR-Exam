@@ -1,3 +1,21 @@
+
+## Getting Started
+
+Clone the application => `git clone git@github.com:Vivekbhusal/FTR-Exam.git`
+
+Install package => `npm install`
+
+Start Application => `npm start`
+
+## Some Explantions
+
+Running the application, 
+1. It creates a folder "generated-fib-files" 
+2. Generates a fibonacci number and stores on a file (file name: fibo-number length .txt)
+3. Runs the Application
+
+
+## Task Detail
 The application should accept an ongoing series of user supplied numbers as inputs, and output notifications when certain conditions are met. It should operate as follows:
 1. On startup, the program will prompt the user for the number of seconds (X) between outputting the frequency of each number to the screen.
 2. Every X seconds the program will display, in frequency descending order, the list of numbers and their frequency.
