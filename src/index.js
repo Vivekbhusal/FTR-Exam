@@ -25,7 +25,6 @@ const pauseTimer = () => timer.pause()
 const resumeTimer = () => timer.resume()
 
 const isFobinacci = (number) => {
-   
     fileManager.findOnFiles(
         number, 
         (isFib) => {
@@ -34,20 +33,26 @@ const isFobinacci = (number) => {
     )   
 }
 
+const insertData = (number) => {
+    userDataEntryMap.set(
+        number, 
+        userDataEntryMap.has(number) ? userDataEntryMap.get(number)+1 : 1
+    );
+}
+
 function startApplication() {
     getUserInputTaskTimer()
-    .then((timeInterval) => {
-        startTimer(timeInterval);
-    })
-    .then(() => {
-        listenToUser();
-    })
+        .then((timeInterval) => {
+            startTimer(timeInterval);
+        })
+        .then(() => {
+            listenToUser();
+        })
 }
 
 function getUserInputTaskTimer() {
     return rl.questionAsync("Please input the number of time in seconds between emitting numbers and their frequency:");
 }
-
 
 function getUserInput(question) {
     return rl.questionAsync(question);
@@ -61,7 +66,7 @@ const listenToUser = () => {
             if(answer.length == 0) return;
 
             if(!isNaN(answer)) {
-                userDataEntryMap.set(answer, userDataEntryMap.has(answer) ? userDataEntryMap.get(answer)+1 : 1);
+                insertData(answer);
                 isFobinacci(answer);
             } else {
                 switch(answer) {
@@ -84,7 +89,6 @@ const listenToUser = () => {
         .then(() => {
             listenToUser();
         }).catch((error) => {
-        
             //Print the result final time before exit
             displayUserInputMapStack();
 
@@ -97,12 +101,13 @@ const listenToUser = () => {
 }
 
 const displayUserInputMapStack = () => {
+    var tempmap = new Map([...userDataEntryMap
+        .entries()]
+        .sort((a, b) => b[1] - a[1]))
 
-    //Show on decending order
-    console.log(userDataEntryMap);
-    // userDataEntryMap.forEach((value, key) => {
-    //     console.log(`${key}:${value}`);
-    // });
+    tempmap.forEach((value, key) => {
+        console.log(`${key}:${value}`);
+    });
 }
 
 
