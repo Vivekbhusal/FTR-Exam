@@ -1,7 +1,7 @@
 
 ## Getting Started
 
-Clone the application => `git clone git@github.com:Vivekbhusal/FTR-Exam.git`
+Clone the application => `git clone git@github.com:Vivekbhusal/fibo-interview-test.git`
 
 Install package => `npm install`
 
