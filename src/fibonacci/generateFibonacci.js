@@ -9,24 +9,28 @@ var tempVar1 = "0";
 var tempVar2 = "1";
 
 
-function GenerateFibonacci() {
-
-}
 /**
  * Check if fibo-numbers folder exists and 
  * remove old files
  */
-const initiliseFileAndFolders = () => {
+function initiliseFileAndFolders() {
     if (!fs.existsSync(DIRECTORY_PATH)){
-        fs.mkdirSync(DIR_NAME);
+        console.log("creating fibo-number directory");
+        fs.mkdirSync(DIRECTORY_PATH);
     } else {
         fs.readdir(DIRECTORY_PATH, function(err, files) {
             if (err) {
                 return console.log('Unable to scan directory: ' + err);
             } 
+
+            if(files.length > 0) {
+                throw new Error("Old files found. Please delete previously generated files and try again.")
+            }
             files.forEach(function (file) {
+                console.log(`Found exiting file. Deleting ${file}`);
                 fs.unlinkSync(path.join(DIRECTORY_PATH, file));
             });
+
         })
     }
 }
@@ -36,6 +40,7 @@ const initiliseFileAndFolders = () => {
  * 0 & 1 to the file by default
  */
 const writeDefaultValueToFile = () => {
+    console.log("writing default to file...");
     writeToFile("0");
     writeToFile("1");
 }
@@ -50,7 +55,7 @@ const writeDefaultValueToFile = () => {
  * @param {Int} number 
  */
 const writeToFile = (number) => {
-    fs.appendFile(DIR_NAME+"/"+number.length+".txt", number+"\n",(err) => {
+    fs.appendFile(DIRECTORY_PATH+"/"+number.length+".txt", number+"\n",(err) => {
         if (err) {
           console.error(err)
           return
