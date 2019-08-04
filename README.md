@@ -107,7 +107,8 @@ The Timer needs to handled based on server/client implementation.
 
 The exam has potential to confuse about the Fibonacci. But the underlying challanges of memory (like buffer) & performance are the core of it all. 
 
-I can talk more about it. I enjoyed the test. It has potentional to make me keep improving (That can be addictive sometime). You can handle the fibo number search logic in different ways. On my first thought, I said, regex would be good way to search.
-With my current implementation, the loopup would be significatly faster because of file indexing based on lenght of input number. 
+I can talk more about it. I enjoyed the test. It has potentional to make me keep improving (That can be addictive sometime). You can handle the fibo number search logic in different ways.
+With my current implementation, the lookup would be efficient because of file indexing based on length of input number. 
+
 
 
