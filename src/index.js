@@ -1,4 +1,6 @@
 const readline = require("readline-promise").default;
+const Timer = require('advanced-timer');
+const fileManager = require("./fileManager");
 
 const rl = readline.createInterface({
     input: process.stdin,
@@ -8,53 +10,29 @@ const rl = readline.createInterface({
 
 //Map object to record user input numbers and it's repeat count
 var userDataEntryMap = new Map();
-
-/*
-- Get the timer value from user and this functions starts the timer with provided interval value
-    - timer function will have call back function to print the results of Map
-- Starts to listen to the user for new Commad - in loop
-    - if String
-        - if halt
-            - halt timer
-        - if resume
-            - resume timer
-        - if Quit
-            - Stop timer
-            - Print the results of Map
-            - Print thankyou message
-        
-    - if isNumber
-        - add to Map set and raise the counter
-        - Check if Fibonnaci Number
-            - Print alert FIB
-*/
-var timer;
-var isTimerPause = false;
+var timer; //timer's object
 
 const startTimer = (timeInterval) => {
-    timer = setInterval(
-        displayUserInputMapStack
-    , parseInt(timeInterval) * 1000);
+    timer = new Timer(parseInt(timeInterval) * 1000 )
+        .action(displayUserInputMapStack)
+        .start();    
 }
 
-const stopTimer = () => clearInterval(timer);
+const stopTimer = () => timer.stop()
 
-const pauseTimer = () => {isTimerPause = true}
+const pauseTimer = () => timer.pause()
 
-const resumeTimer = () => {
-    isTimerPause = false
-}
+const resumeTimer = () => timer.resume()
 
 const isFobinacci = (number) => {
-    if(number == 5) {
-        return true;
-    }
+   
+    fileManager.findOnFiles(
+        number, 
+        (isFib) => {
+            if(isFib) console.log("FIB\n");
+        }
+    )   
 }
-
-function isUserInputValid() {
-    return true;
-}
-
 
 function startApplication() {
     getUserInputTaskTimer()
@@ -76,33 +54,28 @@ function getUserInput(question) {
 }
 
 const listenToUser = () => {
-    // if(userDataEntryMap.size < 1){
-    //     answer = getUserInput("Please enter the first number");
-    // } else {
-    //     answer = getUserInput("Please enter the next number");
-    // }
-    getUserInput("Please enter the next number\n")
+    const nextOrFirst = userDataEntryMap.size < 1 ? "first" : "next";
+    getUserInput(`Please enter the ${nextOrFirst} number\n`)
         .then( answer => {
             
             if(answer.length == 0) return;
 
             if(!isNaN(answer)) {
-                //Store on decending order
                 userDataEntryMap.set(answer, userDataEntryMap.has(answer) ? userDataEntryMap.get(answer)+1 : 1);
-
-                if(isFobinacci()) {
-                    console.log("FIB\n");
-                }
+                isFobinacci(answer);
             } else {
                 switch(answer) {
                     case "halt":
                         pauseTimer();
+                        console.log("timer paused");
                         break;
                     case "resume":
-                        resumeTimer()
+                        resumeTimer();
+                        console.log("timer resumed");
                         break;
                     case "quit":
-                        throw new Error("QUIT");
+                        stopTimer();
+                        throw new Error("User command stop application");
                     default:
                         console.log("Valid input is 'halt', 'resume', 'quit' or an Integer");
                 }
@@ -111,8 +84,7 @@ const listenToUser = () => {
         .then(() => {
             listenToUser();
         }).catch((error) => {
-            stopTimer();
-
+        
             //Print the result final time before exit
             displayUserInputMapStack();
 
@@ -135,7 +107,3 @@ const displayUserInputMapStack = () => {
 
 
 startApplication();
-
-
-// const firstNumber = listenToUser();
-// userDataEntryMap.set(firstNumber, 1);
