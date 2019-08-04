@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Vivekbhusal/FTR-Exam.git"
+    "url": "git@github.com:Vivekbhusal/fibo-interview-test.git"
   },
   "author": "Vivek Bhusal",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Vivekbhusal/FTR-Exam/issues"
+    "url": "https://github.com/Vivekbhusal/fibo-interview-test/issues"
   },
-  "homepage": "https://github.com/Vivekbhusal/FTR-Exam#readme",
+  "homepage": "https://github.com/Vivekbhusal/fibo-interview-test#readme",
   "dependencies": {
     "advanced-timer": "^2.0.1",
     "core-js": "^3.1.4",
