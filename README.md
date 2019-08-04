@@ -87,11 +87,17 @@ quit
 `src/application.js` => `processUserInput` has the core logic of the application. 
 `response.ts` handles the output after processing user data
 
-If building API, can using `processUserInput` function as point. 
+If building API, can using `processUserInput` function as callback point. 
 The Timer needs to handled based on server/client implementation.
 
-2. To make the application push to production ready, I would connect my github with Jenkins or CI/CD pipeline, connect it to AWS cloud deploy to publish it to server.
-Application has a dependency of "Timer" which would have to migrated with caution based on the architecture of application. 
+2. To make the application push to production ready, I would 
+- Setup CI/CD pipeline
+- Write Tests
+- Probably/If needed
+    - write some validation based on business case 
+    - Add docker
+- Write a function to open the application to other user
+    - Some options: API, Web-terminal 
 
 
 3. Honestly this is probably one of the best test I have seen. It tests your hands-on ability but also the overall logical area of software development. 
