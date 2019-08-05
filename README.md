@@ -97,6 +97,7 @@ The Timer needs to handled based on server/client implementation.
 - Setup compiler (Webpack or similar)
 - Write Tests
 - Probably/If needed
+    - polyfills
     - write some validation based on business case 
     - Add docker
 - Write a function to open the application to other user
